@@ -1,0 +1,15 @@
+meta {
+  name: Create Game
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/games
+  body: none
+}
+
+script:post-response {
+  const data = res.getBody();
+  bru.setVar("gameId", data.id);
+}
