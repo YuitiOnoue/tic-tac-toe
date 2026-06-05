@@ -1,0 +1,16 @@
+meta {
+  name: Make Move
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/games/{{gameId}}/move
+  body: json
+}
+
+body:json {
+  {
+    "position": 4
+  }
+}
