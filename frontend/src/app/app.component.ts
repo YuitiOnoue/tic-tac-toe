@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
+import { GameBoardComponent } from './components/game-board/game-board.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [GameBoardComponent],
+  template: `<app-game-board />`,
 })
-export class AppComponent {
-  title = 'frontend';
-}
+export class AppComponent {}
