@@ -1,0 +1,15 @@
+<div class="container">
+  @if (game) {
+    <app-game-status [game]="game" />
+    <div class="board">
+      @for (cell of game.board; track $index) {
+        <app-game-cell
+          [value]="cell"
+          [disabled]="game.status !== 'active'"
+          (cellClick)="onCellClick($index)"
+        />
+      }
+    </div>
+  }
+  <button class="new-game" (click)="createGame()">New Game</button>
+</div>

@@ -17,14 +17,12 @@ app.post("/api/v1/games", (req, res) => {
   const id = uuidv4();
   const game = new TicTacToeGame(id);
   games.set(id, game);
-  res
-    .status(201)
-    .json({
-      id,
-      board: game.board,
-      currentPlayer: game.currentPlayer,
-      status: game.status,
-    });
+  res.status(201).json({
+    id,
+    board: game.board,
+    currentPlayer: game.currentPlayer,
+    status: game.status,
+  });
 });
 
 app.get("/api/v1/games/:id", (req, res) => {
