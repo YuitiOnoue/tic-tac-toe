@@ -1,6 +1,6 @@
 # Tic-Tac-Toe
 
-A tic-tac-toe game with a Node.js/Express REST API backend and Angular frontend (in progress).
+A tic-tac-toe game with a Node.js/Express REST API backend and an Angular frontend.
 
 ## Project Structure
 
@@ -8,31 +8,27 @@ A tic-tac-toe game with a Node.js/Express REST API backend and Angular frontend 
 tic-tac-toe/
   backend/        # Node.js/Express REST API
   bruno/          # API request collection (Bruno)
-  frontend/       # Angular app (coming soon)
+  frontend/       # Angular 19 app
 ```
 
-## Backend
-
-### Requirements
+## Requirements
 
 - Node.js v22+
 - npm
 
-### Setup
+## Getting Started
 
 ```bash
-cd backend
-npm install
+# Backend
+cd backend && npm install && npm run dev
+
+# Frontend (separate terminal)
+cd frontend && npm install && npm start
 ```
 
-### Running
+Backend runs on `http://localhost:3000`. Frontend runs on `http://localhost:4200`.
 
-```bash
-npm run dev   # development with auto-reload (nodemon)
-npm start     # production
-```
-
-Server runs on `http://localhost:3000` by default. Set the `PORT` env var to override.
+## Backend
 
 ### API Routes
 
@@ -58,11 +54,23 @@ curl -X POST http://localhost:3000/api/v1/games/<id>/move \
   -d '{"position": 4}'
 ```
 
-### Running Tests
+### Tests
 
 ```bash
+cd backend
 npm test           # single run
 npm run test:watch # watch mode
+```
+
+## Frontend
+
+Angular 19 standalone components. Communicates with the backend via `HttpClient`.
+
+### Frontend Tests
+
+```bash
+cd frontend
+npm test   # Karma + Jasmine, runs in watch mode
 ```
 
 ## API Requests (Bruno)

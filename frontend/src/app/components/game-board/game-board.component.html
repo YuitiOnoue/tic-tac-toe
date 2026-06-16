@@ -1,7 +1,8 @@
 <div class="container">
   @if (error) {
     <p class="error">{{ error }}</p>
-  } @else if (game) {
+  }
+  @if (game) {
     <app-game-status [game]="game" />
     <div class="board">
       @for (cell of game.board; track $index) {
