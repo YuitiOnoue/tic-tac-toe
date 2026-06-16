@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameBoardComponent } from './game-board.component';
 import { Game } from '../../models/game.model';
 import { GameService } from '../../services/game.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('GameBoardComponent', () => {
   let component: GameBoardComponent;
@@ -55,6 +55,18 @@ describe('GameBoardComponent', () => {
     expect(mockGameService.createGame).toHaveBeenCalled();
   });
 
+  it('should show error mesage when createGame fails', () => {
+    mockGameService.createGame.and.returnValue(
+      throwError(() => new Error('Network error')),
+    );
+    const button = fixture.nativeElement.querySelector('.new-game');
+    button.click();
+    fixture.detectChanges();
+    const errorEl = fixture.nativeElement.querySelector('.error');
+    expect(errorEl).not.toBeNull();
+    expect(errorEl.textContent).toContain('Failed to create game');
+  });
+
   it('should render 9 cells after game is created', () => {
     const button = fixture.nativeElement.querySelector('.new-game');
     button.click();
@@ -78,5 +90,17 @@ describe('GameBoardComponent', () => {
     component.game = mockGame;
     component.onCellClick(3);
     expect(component.game).toEqual(mockGameAfterMove);
+  });
+
+  it('should show error message when makeMove fails', () => {
+    component.game = mockGame;
+    mockGameService.makeMove.and.returnValue(
+      throwError(() => new Error('Network error')),
+    );
+    component.onCellClick(0);
+    fixture.detectChanges();
+    const errorEl = fixture.nativeElement.querySelector('.error');
+    expect(errorEl).not.toBeNull();
+    expect(errorEl.textContent).toContain('Failed to make move');
   });
 });

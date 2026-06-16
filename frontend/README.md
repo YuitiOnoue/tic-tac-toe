@@ -1,59 +1,38 @@
 # Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Angular 19 app for the tic-tac-toe game. Communicates with the backend REST API via `HttpClient`.
 
-## Development server
+## Requirements
 
-To start a local development server, run:
+- Node.js v22+
+- npm
+- Backend running on `http://localhost:3000`
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Setup
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Running
 
 ```bash
-ng generate --help
+npm start   # ng serve — http://localhost:4200
 ```
 
-## Building
-
-To build the project run:
+## Tests
 
 ```bash
-ng build
+npm test   # Karma + Jasmine, watch mode
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Architecture
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Path | Description |
+| ---- | ----------- |
+| `src/app/models/game.model.ts` | `Game` interface matching the API response |
+| `src/app/services/game.service.ts` | HTTP calls to the backend (`createGame`, `getGame`, `makeMove`) |
+| `src/app/components/game-cell/` | Single board cell — `value` and `disabled` inputs, `cellClick` output |
+| `src/app/components/game-status/` | Displays current player, winner, or draw message |
+| `src/app/components/game-board/` | Root game component — manages state and renders the 3×3 grid |
+| `src/environments/` | API URL configuration per environment |
